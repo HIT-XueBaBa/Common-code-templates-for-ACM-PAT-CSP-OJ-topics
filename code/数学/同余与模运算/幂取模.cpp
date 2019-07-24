@@ -5,6 +5,6 @@ int powMod(int a,int n,int m){
     int x=powMod(a,n/2,m);
     long long ans=x*1ll*x%m;
     if(n%2==1)
-        ans=(ans*a)%m;
+        ans=ans*a%m;
     return (int)ans;
 }
