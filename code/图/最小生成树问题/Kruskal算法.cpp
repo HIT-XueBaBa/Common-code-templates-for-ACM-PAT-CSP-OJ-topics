@@ -8,7 +8,7 @@ int findFather(int x){//查找父亲结点并进行路径压缩
     return temp;
 }
 int Kruskal(){//求解最小生成树的权值之和
-	iota(father,father+MAX,0);//初始化并查集
+    iota(father,father+MAX,0);//初始化并查集
     int sumCost=0; //sumCost表示整棵最小生成树的各边权值之和
     while(!edges.empty()){
         Edge e=edges.top();
