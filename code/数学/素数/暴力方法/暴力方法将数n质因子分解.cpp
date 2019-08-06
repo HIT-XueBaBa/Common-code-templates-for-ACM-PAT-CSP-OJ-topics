@@ -12,4 +12,6 @@ void getFactor(int n,int arg){//arg为1时表示数n在分子上，作乘法；a
         if(n==1)
             break;
     }
+    if(factor.empty())
+        factor[n]=arg;
 }
