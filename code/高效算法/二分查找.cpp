@@ -16,7 +16,7 @@ int binarySearch(vector<int>&v,int left,int right,int value){
 int solve(vector<int>&v,int left,int right){
     int mid;
     while(left<right){
-        mid==left+(right-left)/2;
+        mid=left+(right-left)/2;
         if(条件成立)
             right=mid;
         else
