@@ -15,7 +15,9 @@ int binarySearch(vector<int>&v,int left,int right,int value){
 //寻找有序序列中第一个满足某条件的位置，二分区间为左闭右闭的区间[left,right]
 int solve(vector<int>&v,int left,int right){
     int mid;
-    while(left<right){
+    while(left<=right){
+        if(left==right)
+            return (条件成立)?left:left+1;
         mid=left+(right-left)/2;
         if(条件成立)
             right=mid;
