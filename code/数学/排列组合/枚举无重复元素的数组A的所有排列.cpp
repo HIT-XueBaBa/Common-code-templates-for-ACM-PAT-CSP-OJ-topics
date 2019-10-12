@@ -1,3 +1,4 @@
+//调用f(A,0)，如果要求字典序输出全排列，调用之前请先对A排序
 void f(vector<int>&A, int index) {
     if(index==A.size()){
         //处理当前的排列
