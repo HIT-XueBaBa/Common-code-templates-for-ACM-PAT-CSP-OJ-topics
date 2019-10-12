@@ -5,10 +5,10 @@ void f(vector<int>& A, int n) {
         return;
     }
     for (int i = 1; i <= n; i++) {  //尝试在A末尾填各种整数i
-        if (find(A.begin(), A.end(), i) == A.end()) {
-            A.push_back(i);
-            f(A, n);  //递归调用
-            A.pop_back();
-        }
+        if (find(A.begin(), A.end(), i) != A.end())
+            continue;
+        A.push_back(i);
+        f(A, n);  //递归调用
+        A.pop_back();
     }
 }
