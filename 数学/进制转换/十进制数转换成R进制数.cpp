@@ -1,5 +1,5 @@
-vector<int> trans10toR(int i, int R) {
-    vector<int> ans;
+vector<LL> trans10toR(LL i, LL R) {
+    vector<LL> ans;
     do {
         ans.push_back(i % R);
         i /= R;

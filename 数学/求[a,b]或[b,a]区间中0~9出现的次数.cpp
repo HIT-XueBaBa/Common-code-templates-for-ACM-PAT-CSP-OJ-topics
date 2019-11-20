@@ -1,10 +1,10 @@
-vector<int>f(int a,int b){
+vector<LL>f(LL a,LL b){
     if(a<b)
         swap(a,b);
-    vector<int>ans(10);
-    int left1=a/10,left2=b/10,cur1=a%10,cur2=b%10,right1=0,right2=0,p=1;
+    vector<LL>ans(10);
+    LL left1=a/10,left2=b/10,cur1=a%10,cur2=b%10,right1=0,right2=0,p=1;
     while(!(left1==0&&cur1==0)){
-        for(int digit=0;digit<10;++digit){
+        for(LL digit=0;digit<10;++digit){
             ans[digit]+=(left1-left2-1)*p;
             if(cur1>digit)
                 ans[digit]+=p;

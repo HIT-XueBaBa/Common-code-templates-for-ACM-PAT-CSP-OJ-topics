@@ -1,14 +1,14 @@
-当涉及到的边除了首尾结点外还需要有其他信息，例如是否已被访问、该边的权值等时，采取如下方法存储图：
+���漰���ı߳�����β����⻹��Ҫ��������Ϣ�������Ƿ��ѱ����ʡ��ñߵ�Ȩֵ��ʱ����ȡ���·����洢ͼ��
 ```cpp
-struct Edge{//存储边的结构体
-    int from,to;//首尾结点
-    int cap,flow;//该边的容量、残量（最大流算法使用）
-    bool visit;//欧拉序列使用
-    int cost;//最短路问题使用
-    ······
-    Edge(int f,int t,······):from(f),to(t),cap(c),flow(fl) {}
+struct Edge{//�洢�ߵĽṹ��
+    LL from,to;//��β���
+    LL cap,flow;//�ñߵ�������������������㷨ʹ�ã�
+    bool visit;//ŷ������ʹ��
+    LL cost;//���·����ʹ��
+    ������������
+    Edge(LL f,LL t,������������):from(f),to(t),cap(c),flow(fl) {}
 };
-vector<Edge>edges;//存储所有边
-vector<int>graph[MAX];//graph[i][j]表示i号结点的第j条边在edges数组中的序号
+vector<Edge>edges;//�洢���б�
+vector<LL>graph[MAX];//graph[i][j]��ʾi�Ž��ĵ�j������edges�����е����
 ```
-注意，如果是无向图，则把一条边及其反向边相邻存储，则当已知一条边在edges数组中的序号为`i`时，其反向边在edges数组中的序号为`i^1`
+ע�⣬���������ͼ�����һ���߼��䷴������ڴ洢������֪һ������edges�����е����Ϊ`i`ʱ���䷴�����edges�����е����Ϊ`i^1`

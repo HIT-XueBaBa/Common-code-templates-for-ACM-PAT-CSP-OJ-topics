@@ -1,64 +1,64 @@
 struct Node {
-    int left = -1, right = -1, sum = 0, lazy = 0;
+    LL left = -1, right = -1, sum = 0, lazy = 0;
 };
-vector<Node> tree(n << 1);  //nä¸ºåŽŸåºåˆ—ä¸­æ•°å­—çš„ä¸ªæ•°
-int getIndex(int i) {
-    int n = tree.size() >> 1, k = (1 << (int)log2(n + n - 1)) - n;
+vector<Node> tree(n << 1);  //nÎªÔ­ÐòÁÐÖÐÊý×ÖµÄ¸öÊý
+LL getIndex(LL i) {
+    LL n = tree.size() >> 1, k = (1 << (LL)log2(n + n - 1)) - n;
     return (n + i - 1 + k) % n + n;
 }
-void createTree(vector<int>& A) {
-    int n = tree.size() >> 1;
-    for (int i = 1; i <= n; ++i) {
-        int p = getIndex(i);
+void createTree(vector<LL>& A) {
+    LL n = tree.size() >> 1;
+    for (LL i = 1; i <= n; ++i) {
+        LL p = getIndex(i);
         tree[p].left = tree[p].right = i;
         tree[p].sum = A[i];
         tree[p].lazy = 0;
     }
-    for (int i = n - 1; i > 0; --i) {
-        int child = i << 1;
+    for (LL i = n - 1; i > 0; --i) {
+        LL child = i << 1;
         tree[i].left = min(tree[child].left, tree[child + 1].left);
         tree[i].right = max(tree[child].right, tree[child + 1].right);
         tree[i].sum = tree[child].sum + tree[child + 1].sum;
         tree[i].lazy = 0;
     }
 }
-void pushdown(int i) {  //æ›´æ–°ä¸‹å±‚åŒºé—´çš„å€¼
-    int child = i << 1;
+void pushdown(LL i) {  //¸üÐÂÏÂ²ãÇø¼äµÄÖµ
+    LL child = i << 1;
     if (child < tree.size()) {
-        tree[child].lazy += tree[i].lazy;  //å·¦å­æ ‘æ ‡è®°ç´¯åŠ 
+        tree[child].lazy += tree[i].lazy;  //×ó×ÓÊ÷±ê¼ÇÀÛ¼Ó
         tree[child].sum += tree[i].lazy * (tree[child].right - tree[child].left + 1);
     }
     if (child + 1 < tree.size()) {
-        tree[child + 1].lazy += tree[i].lazy;  //å³å­æ ‘æ ‡è®°ç´¯åŠ 
+        tree[child + 1].lazy += tree[i].lazy;  //ÓÒ×ÓÊ÷±ê¼ÇÀÛ¼Ó
         tree[child + 1].sum += tree[i].lazy * (tree[child + 1].right - tree[child + 1].left + 1);
     }
-    tree[i].lazy = 0;  //æ ‡è®°ä¼ é€’åŽæ¸…ç©ºä¸º0
+    tree[i].lazy = 0;  //±ê¼Ç´«µÝºóÇå¿ÕÎª0
 }
-void update(int root, int left, int right, int v) {  //å°†A[left]~A[right]éƒ½å¢žåŠ v
+void update(LL root, LL left, LL right, LL v) {  //½«A[left]~A[right]¶¼Ôö¼Óv
     if (tree[root].left >= left && tree[root].right <= right) {
         tree[root].lazy += v;
         tree[root].sum += v * (tree[root].right - tree[root].left + 1);
         return;
     }
-    int mid = tree[root].left + (tree[root].right - tree[root].left) / 2;
-    int child = root << 1;
+    LL mid = tree[root].left + (tree[root].right - tree[root].left) / 2;
+    LL child = root << 1;
     tree[root].sum = 0;
     if (child < tree.size() && left <= mid) {
-        update(child, left, right, v);  //å¾€å·¦æ›´æ–°
+        update(child, left, right, v);  //Íù×ó¸üÐÂ
         tree[root].sum += tree[child].sum;
     }
     if (child + 1 < tree.size() && right > mid) {
-        update(child + 1, left, right, v);  //å¾€å³æ›´æ–°
+        update(child + 1, left, right, v);  //ÍùÓÒ¸üÐÂ
         tree[root].sum += tree[child + 1].sum;
     }
 }
-int query(int root, int left, int right) {
+LL query(LL root, LL left, LL right) {
     if (tree[root].left >= left && tree[root].right <= right)
         return tree[root].sum;
     if (tree[root].lazy != 0)
         pushdown(root);
-    int sum = 0, mid = tree[root].left + (tree[root].right - tree[root].left) / 2;
-    int child = root << 1;
+    LL sum = 0, mid = tree[root].left + (tree[root].right - tree[root].left) / 2;
+    LL child = root << 1;
     if (child < tree.size() && left <= mid)
         sum += query(child, left, right);
     if (child + 1 < tree.size() && right > mid)

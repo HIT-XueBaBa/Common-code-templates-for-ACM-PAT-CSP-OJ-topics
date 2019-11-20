@@ -1,4 +1,4 @@
-void extendGcd(int a,int b,int&d,int&x,int&y){
+void extendGcd(LL a,LL b,LL&d,LL&x,LL&y){
     if(b==0){
         d=a;
         x=1;

@@ -1,23 +1,23 @@
-priority_queue<Edge>edges;//è¾¹çš„ä¼˜å…ˆçº§é˜Ÿåˆ—
-int father[MAX];
-int findFather(int x){//æŸ¥æ‰¾çˆ¶äº²ç»“ç‚¹å¹¶è¿›è¡Œè·¯å¾„å‹ç¼©
+priority_queue<Edge>edges;//±ßµÄÓÅÏÈ¼¶¶ÓÁĞ
+LL father[MAX];
+LL findFather(LL x){//²éÕÒ¸¸Ç×½áµã²¢½øĞĞÂ·¾¶Ñ¹Ëõ
     if(x==father[x])
         return x;
-    int temp=findFather(father[x]);
+    LL temp=findFather(father[x]);
     father[x]=temp;
     return temp;
 }
-int Kruskal(){//æ±‚è§£æœ€å°ç”Ÿæˆæ ‘çš„æƒå€¼ä¹‹å’Œ
-    iota(father,father+MAX,0);//åˆå§‹åŒ–å¹¶æŸ¥é›†
-    int sumCost=0; //sumCostè¡¨ç¤ºæ•´æ£µæœ€å°ç”Ÿæˆæ ‘çš„å„è¾¹æƒå€¼ä¹‹å’Œ
+LL Kruskal(){//Çó½â×îĞ¡Éú³ÉÊ÷µÄÈ¨ÖµÖ®ºÍ
+    iota(father,father+MAX,0);//³õÊ¼»¯²¢²é¼¯
+    LL sumCost=0; //sumCost±íÊ¾Õû¿Ã×îĞ¡Éú³ÉÊ÷µÄ¸÷±ßÈ¨ÖµÖ®ºÍ
     while(!edges.empty()){
         Edge e=edges.top();
-        edges.pop();//å¼¹å‡ºå½“å‰é˜Ÿåˆ—ä¸­è¾¹æƒæœ€å°çš„è¾¹
-        int ua=findFather(e.from),ub=findFather(e.to);
+        edges.pop();//µ¯³öµ±Ç°¶ÓÁĞÖĞ±ßÈ¨×îĞ¡µÄ±ß
+        LL ua=findFather(e.from),ub=findFather(e.to);
         if(ua!=ub){
             sumCost+=e.cost;
             father[ua]=ub;
         }
     }
-    return sumCost;//è¿”å›æ•´æ£µæ ‘çš„æƒå€¼ä¹‹å’Œ
+    return sumCost;//·µ»ØÕû¿ÃÊ÷µÄÈ¨ÖµÖ®ºÍ
 }

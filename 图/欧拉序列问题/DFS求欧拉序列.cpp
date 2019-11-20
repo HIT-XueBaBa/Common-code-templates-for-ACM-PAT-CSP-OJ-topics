@@ -1,10 +1,10 @@
-void DFS(int v){
-    for(int i:graph[v]){
+void DFS(LL v){
+    for(LL i:graph[v]){
         if(!edges[i].visit){
-            edges[i].visit=edges[i^1].visit=true;//鏈夊悜鍥俱�佹棤鍚戝浘鍦ㄨ繖鏄笉鍚岀殑
+            edges[i].visit=edges[i^1].visit=true;//有向图、无向图在这是不同的
             DFS(edges[i].to);
         }
     }
     ans.push_back(v);
 }
-//娉ㄦ剰ans鏁扮粍蹇呴』鍊掑簭杈撳嚭鎵嶆槸姝ｇ‘鐨勬鎷夊簭鍒椼�傚亣璁炬湁m鏉¤竟锛屽垯鍒ゆ柇鍥炬槸鍚﹁繛閫氱殑璇彞鏄痑ns.size()==m+1
+//注意ans数组必须倒序输出才是正确的欧拉序列。假设有m条边，则判断图是否连通的语句是ans.size()==m+1

@@ -1,15 +1,15 @@
-//æ— æƒå›¾å•æºæœ€çŸ­è·¯çš„BFSç®—æ³•çš„è¾¹é™¤é¦–å°¾ç»“ç‚¹å¤–ï¼Œè¾¹ä¸åŒ…å«å…¶ä»–ä¿¡æ¯ï¼Œä¸éœ€è¦ä½¿ç”¨ä¸Šé¢çš„å­˜å‚¨ç»“æ„ï¼Œgraph[i]ä¸­å­˜å‚¨çš„ç›´æ¥æ˜¯iå·ç»“ç‚¹èƒ½åˆ°è¾¾çš„ç»“ç‚¹ç¼–å·
-vector<int>graph[MAX];//graph[i][j]è¡¨ç¤ºç»“ç‚¹ièƒ½åˆ°è¾¾çš„ç¬¬jä¸ªç»“ç‚¹ç¼–å·
-void BFS(int s){
-    queue<int>q;
+//ÎŞÈ¨Í¼µ¥Ô´×î¶ÌÂ·µÄBFSËã·¨µÄ±ß³ıÊ×Î²½áµãÍâ£¬±ß²»°üº¬ÆäËûĞÅÏ¢£¬²»ĞèÒªÊ¹ÓÃÉÏÃæµÄ´æ´¢½á¹¹£¬graph[i]ÖĞ´æ´¢µÄÖ±½ÓÊÇiºÅ½áµãÄÜµ½´ïµÄ½áµã±àºÅ
+vector<LL>graph[MAX];//graph[i][j]±íÊ¾½áµãiÄÜµ½´ïµÄµÚj¸ö½áµã±àºÅ
+void BFS(LL s){
+    queue<LL>q;
     memset(inQueue,0,sizeof(inQueue));
     dis[s]=0;
     q.push(s);
     inQueue[s]=true;
     while(!q.empty()){
-        int p=q.front();
+        LL p=q.front();
         q.pop();
-        for(int i:graph[p]){
+        for(LL i:graph[p]){
             if(!inQueue[i]){
                 q.push(i);
                 dis[i]=dis[p]+1;

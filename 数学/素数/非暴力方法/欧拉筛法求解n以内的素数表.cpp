@@ -1,13 +1,13 @@
-//ä»¥ä¸‹ä»£ç æ±‚è§£[2,n)ä»¥å†…çš„ç´ æ•°è¡¨ï¼ˆæ³¨æ„ä¸åŒ…å«æ•°å­—nï¼‰
-vector<int>prime;//ç´ æ•°è¡¨å­˜å‚¨åœ¨primeä¸­ï¼Œprimeæ˜¯å…¨å±€å˜é‡
-void findPrime(int n){
-    vector<bool>f(n,true);//iä¸ºç´ æ•°ï¼Œåˆ™f[i]=true;iä¸æ˜¯ç´ æ•°ï¼Œåˆ™f[i]=false
-    for(int i=2;i<n;++i){
+//ÒÔÏÂ´úÂëÇó½â[2,n)ÒÔÄÚµÄËØÊı±í£¨×¢Òâ²»°üº¬Êı×Ön£©
+vector<LL>prime;//ËØÊı±í´æ´¢ÔÚprimeÖĞ£¬primeÊÇÈ«¾Ö±äÁ¿
+void findPrime(LL n){
+    vector<bool>f(n,true);//iÎªËØÊı£¬Ôòf[i]=true;i²»ÊÇËØÊı£¬Ôòf[i]=false
+    for(LL i=2;i<n;++i){
         if(f[i])
             prime.push_back(i);
-        for(int j=0;j<prime.size()&&i*prime[j]<n;++j){//éå†æ‰€æœ‰å·²ç­›é€‰å‡ºçš„ç´ æ•°
-            f[i*prime[j]]=false;//i*prime[j]ä¸æ˜¯ç´ æ•°
-            if(i%prime[j]==0)//å…³é”®
+        for(LL j=0;j<prime.size()&&i*prime[j]<n;++j){//±éÀúËùÓĞÒÑÉ¸Ñ¡³öµÄËØÊı
+            f[i*prime[j]]=false;//i*prime[j]²»ÊÇËØÊı
+            if(i%prime[j]==0)//¹Ø¼ü
                 break;
         }
     }

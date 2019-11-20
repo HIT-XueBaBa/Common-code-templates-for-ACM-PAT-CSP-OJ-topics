@@ -1,17 +1,17 @@
-bool bellmanFord(int s){//è¿”å›trueä»£è¡¨sèƒ½å¤Ÿåˆ°è¾¾ä¸€ä¸ªè´Ÿç¯
-    const int INF=0x3fffffff;
-    queue<int>q;
+bool bellmanFord(LL s){//·µ»Øtrue´ú±ísÄÜ¹»µ½´ïÒ»¸ö¸º»·
+    const LL INF=0x3fffffff;
+    queue<LL>q;
     memset(inQueue,0,sizeof(inQueue));
-    memset(num,0,sizeof(num));//num[i]è¡¨ç¤ºç»“ç‚¹iå…¥é˜Ÿäº†å¤šå°‘æ¬¡,ç”¨æ¥æ£€æµ‹æ˜¯å¦æœ‰è´Ÿç¯
+    memset(num,0,sizeof(num));//num[i]±íÊ¾½áµãiÈë¶ÓÁË¶àÉÙ´Î,ÓÃÀ´¼ì²âÊÇ·ñÓĞ¸º»·
     fill(dis,dis+MAX,INF);
     dis[s]=0;
     inQueue[s]=true;
     q.push(s);
     while(!q.empty()){
-        int u=q.front();
+        LL u=q.front();
         q.pop();
         inQueue[u]=false;
-        for(int i:graph[u]){
+        for(LL i:graph[u]){
             Edge&e=edges[i];
             if(dis[u]<INF&&dis[e.to]>dis[u]+e.cost){
                 dis[e.to]=dis[u]+e.cost;

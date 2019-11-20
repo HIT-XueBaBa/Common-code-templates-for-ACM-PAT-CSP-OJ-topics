@@ -1,17 +1,17 @@
-stack<int>s;
-s.push(start);//璧峰椤剁偣鍏ユ爤
+stack<LL>s;
+s.push(start);//起始顶点入栈
 while(!s.empty()){
-    int v=s.top(),i;
-    for(i=0;i<graph[v].size();++i){//閬嶅巻璇ョ偣鑳藉埌杈剧殑缁撶偣
-        int w=graph[v][i];
-        if(!visit[v][w]){//璇ヨ竟娌℃湁琚闂繃
-            s.push(w);//椤剁偣w鍏ユ爤
-            visit[v][w]=visit[w][v]=true;//璇ヨ竟宸茶璁块棶
-            break;//璺冲嚭寰幆
+    LL v=s.top(),i;
+    for(i=0;i<graph[v].size();++i){//遍历该点能到达的结点
+        LL w=graph[v][i];
+        if(!visit[v][w]){//该边没有被访问过
+            s.push(w);//顶点w入栈
+            visit[v][w]=visit[w][v]=true;//该边已被访问
+            break;//跳出循环
         }
     }
-    if(i==graph[v].size()){//娌℃湁杩樻湭璁块棶鐨勮竟
-        path.push_back(v);//椤剁偣v鍔犲叆娆ф媺搴忓垪
-        s.pop();//鍑烘爤
+    if(i==graph[v].size()){//没有还未访问的边
+        path.push_back(v);//顶点v加入欧拉序列
+        s.pop();//出栈
     }
 }

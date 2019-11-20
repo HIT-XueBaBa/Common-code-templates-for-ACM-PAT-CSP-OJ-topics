@@ -1,12 +1,12 @@
-//è°ƒç”¨få‡½æ•°ç”Ÿæˆæ‰€æœ‰åˆ†å‰²å­ä¸²,åˆ†å‰²å­ä¸²å­˜å‚¨åœ¨ansä¸­
+//µ÷ÓÃfº¯ÊıÉú³ÉËùÓĞ·Ö¸î×Ó´®,·Ö¸î×Ó´®´æ´¢ÔÚansÖĞ
 vector<vector<string>> ans;
 vector<string> temp;
-void f(string& s, int i) {
+void f(string& s, LL i) {
     if (i == s.size()) {
         ans.push_back(temp);
         return;
     }
-    for (int j = i; j < s.size(); ++j) {
+    for (LL j = i; j < s.size(); ++j) {
         if (p[i * s.size() + j]) {
             temp.push_back(s.substr(i, j - i + 1));
             f(s, j + 1);

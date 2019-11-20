@@ -1,10 +1,10 @@
-//è°ƒç”¨f(A,0)ï¼Œå¦‚æœè¦æ±‚å­—å…¸åºè¾“å‡ºå…¨æ’åˆ—ï¼Œè°ƒç”¨ä¹‹å‰è¯·å…ˆå¯¹Aæ’åº
-void f(vector<int>& A, int index) {
+//µ÷ÓÃf(A,0)£¬Èç¹ûÒªÇó×ÖµäĞòÊä³öÈ«ÅÅÁĞ£¬µ÷ÓÃÖ®Ç°ÇëÏÈ¶ÔAÅÅĞò
+void f(vector<LL>& A, LL index) {
     if (index == A.size()) {
-        //å¤„ç†å½“å‰çš„æ’åˆ—
+        //´¦Àíµ±Ç°µÄÅÅÁĞ
         return;
     }
-    for (int i = index; i < A.size(); ++i) {
+    for (LL i = index; i < A.size(); ++i) {
         swap(A[index], A[i]);
         f(A, index + 1);
         swap(A[index], A[i]);

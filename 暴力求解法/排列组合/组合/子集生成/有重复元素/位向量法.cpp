@@ -1,27 +1,27 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-//bitsetçš„é•¿åº¦éœ€è¦æ¯”numsçš„æœ€å¤§é•¿åº¦å¤§ï¼Œè¿™é‡Œçš„100è¦æŒ‰é¢˜ç›®è¦æ±‚å˜åŒ–
-vector<vector<int>> ans;
-void f(vector<int>& nums, bitset<100>& bits, int i) {
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+//bitsetµÄ³¤¶ÈĞèÒª±ÈnumsµÄ×î´ó³¤¶È´ó£¬ÕâÀïµÄ100Òª°´ÌâÄ¿ÒªÇó±ä»¯
+vector<vector<LL>> ans;
+void f(vector<LL>& nums, bitset<100>& bits, LL i) {
     if (i == nums.size()) {
         ans.push_back({});
-        for (int i = 0; i < nums.size(); ++i)
+        for (LL i = 0; i < nums.size(); ++i)
             if (bits[i]) {
                 ans.back().push_back(nums[i]);
             }
         return;
     }
-    int j = find_if(nums.begin() + i, nums.end(), [i, &nums](int a) {
+    LL j = find_if(nums.begin() + i, nums.end(), [i, &nums](LL a) {
                 return a != nums[i];
             }) - nums.begin();
-    for (int k = i; k < j; ++k) {
+    for (LL k = i; k < j; ++k) {
         bits[k] = true;
         f(nums, bits, j);
     }
-    for (int k = i; k < j; ++k)
+    for (LL k = i; k < j; ++k)
         bits[k] = false;
     f(nums, bits, j);
 }
-void subsetsWithDup(vector<int>& nums) {
+void subsetsWithDup(vector<LL>& nums) {
     sort(nums.begin(), nums.end());
     bitset<100> bits;
     f(nums, bits, 0);

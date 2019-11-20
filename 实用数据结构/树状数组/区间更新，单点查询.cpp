@@ -1,12 +1,12 @@
-auto lowbit = [](int x) { return x & (-x); };
-vector<int> c(MAX);
-void update(int x, int v) {
-    for (int i = x; i >0; i -= lowbit(i))
+auto lowbit = [](LL x) { return x & (-x); };
+vector<LL> c(MAX);
+void update(LL x, LL v) {
+    for (LL i = x; i >0; i -= lowbit(i))
         c[i] += v;
 }
-int getSum(int x) {
-    int sum = 0;
-    for (int i = x; i <c.size(); i += lowbit(i))
+LL getSum(LL x) {
+    LL sum = 0;
+    for (LL i = x; i <c.size(); i += lowbit(i))
         sum += c[i];
     return sum;
 }

@@ -1,9 +1,9 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-vector<vector<int>> ans;
-void subsets(vector<int>& nums) {
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+vector<vector<LL>> ans;
+void subsets(vector<LL>& nums) {
     ans.push_back({});
-    for (int n : nums) {
-        for (int i = 0, s = ans.size(); i < s; ++i) {
+    for (LL n : nums) {
+        for (LL i = 0, s = ans.size(); i < s; ++i) {
             ans.push_back(ans[i]);
             ans.back().push_back(n);
         }

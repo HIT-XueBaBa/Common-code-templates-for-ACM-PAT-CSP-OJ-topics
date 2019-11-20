@@ -1,7 +1,7 @@
 bool isCompleteTree(TreeNode* root) {
-    queue<pair<TreeNode*, int>> q;
+    queue<pair<TreeNode*, LL>> q;
     q.push({root, 1});
-    for (int last = 1; !q.empty(); ++last) {
+    for (LL last = 1; !q.empty(); ++last) {
         auto i = q.front();
         q.pop();
         if (last != i.second)

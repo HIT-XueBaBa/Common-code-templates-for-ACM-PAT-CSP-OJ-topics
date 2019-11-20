@@ -1,20 +1,20 @@
-vector<int>graph[MAX];
-//index[i]è¡¨ç¤ºiæ˜¯ç¬¬å‡ ä¸ªè¢«è®¿é—®çš„ç»“ç‚¹,lowLink[i]è¡¨ç¤ºä»iå‡ºå‘ç»æœ‰å‘è¾¹å¯åˆ°è¾¾çš„æ‰€æœ‰èŠ‚ç‚¹ä¸­æœ€å°çš„index,sccno[i]è¡¨ç¤ºiæ‰€å±çš„å¼ºè¿é€šåˆ†é‡çš„ç¼–å·
-int index[MAX],lowLink[MAX],sccno[MAX],dfsNo=0,scc_cnt=0;
-stack<int>s;//ç®—æ³•ç»“æŸæ—¶sä¸ºç©º
-void DFS(int v){
+vector<LL>graph[MAX];
+//index[i]±íÊ¾iÊÇµÚ¼¸¸ö±»·ÃÎÊµÄ½áµã,lowLink[i]±íÊ¾´Ói³ö·¢¾­ÓĞÏò±ß¿Éµ½´ïµÄËùÓĞ½ÚµãÖĞ×îĞ¡µÄindex,sccno[i]±íÊ¾iËùÊôµÄÇ¿Á¬Í¨·ÖÁ¿µÄ±àºÅ
+LL index[MAX],lowLink[MAX],sccno[MAX],dfsNo=0,scc_cnt=0;
+stack<LL>s;//Ëã·¨½áÊøÊ±sÎª¿Õ
+void DFS(LL v){
     index[v]=lowLink[v]=++dfsNo;
     s.push(v);
-    for(int i:graph[v]){
+    for(LL i:graph[v]){
         if(index[i]==0){
             DFS(i);
             lowLink[v]=min(lowLink[v],lowLink[i]);
         }else if(sccno[i]==0)
             lowLink[v]=min(lowLink[v],index[i]);
     }
-    if(lowLink[v]==index[v]){//æ˜¯ä¸€ä¸ªå¼ºè¿é€šåˆ†æ”¯çš„æ ¹ç»“ç‚¹
+    if(lowLink[v]==index[v]){//ÊÇÒ»¸öÇ¿Á¬Í¨·ÖÖ§µÄ¸ù½áµã
         ++scc_cnt;
-        int t;
+        LL t;
         do{
             t=s.top();
             s.pop();
@@ -23,7 +23,7 @@ void DFS(int v){
     }
 }
 void Tarjan(){
-    for(int i=1;i<=n;++i)//å‡è®¾ç»“ç‚¹ç”±1~nç¼–å·
+    for(LL i=1;i<=n;++i)//¼ÙÉè½áµãÓÉ1~n±àºÅ
         if(index[i]==0)
             DFS(i);
 }

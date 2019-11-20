@@ -1,12 +1,12 @@
-void combine(int n, int k) {
-    int i = 0;
-    vector<int> p(k, 0);
+void combine(LL n, LL k) {
+    LL i = 0;
+    vector<LL> p(k, 0);
     while (i >= 0) {
         p[i]++;
         if (p[i] > n)
             --i;
         else if (i == k - 1) {
-            //澶勭悊褰撳墠缁勫悎
+            //处理当前组合
         } else {
             ++i;
             p[i] = p[i - 1];

@@ -1,6 +1,6 @@
-//åˆ’åˆ†ç®—æ³•ï¼Œå°†æ•°ç»„numsåˆ†æˆ<tã€==tã€>tä¸‰éƒ¨åˆ†
-void partition(vector<int>& nums, int t) {
-    for (int i = 0, j = 0, k = nums.size() - 1; i <= k;) {
+//»®·ÖËã·¨£¬½«Êı×énums·Ö³É<t¡¢==t¡¢>tÈı²¿·Ö
+void partition(vector<LL>& nums, LL t) {
+    for (LL i = 0, j = 0, k = nums.size() - 1; i <= k;) {
         if (nums[i] > t)
             swap(nums[i], nums[k--]);
         else if (nums[i] < t)

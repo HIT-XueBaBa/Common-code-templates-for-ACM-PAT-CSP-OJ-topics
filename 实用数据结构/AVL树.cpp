@@ -1,12 +1,12 @@
 struct AVLTreeNode{
-    int data,height,num;//å…³é”®å­—ã€é«˜åº¦
+    LL data,height,num;//¹Ø¼ü×Ö¡¢¸ß¶È
     AVLTreeNode *left,*right;
-    AVLTreeNode(int value, AVLTreeNode *l=nullptr, AVLTreeNode *r=nullptr):data(value), height(0),left(l),right(r) {}
+    AVLTreeNode(LL value, AVLTreeNode *l=nullptr, AVLTreeNode *r=nullptr):data(value), height(0),left(l),right(r) {}
 };
-int getHeight(AVLTreeNode*r){
+LL getHeight(AVLTreeNode*r){
     return r==nullptr?0:r->height;
 }
-AVLTreeNode*findAVL(AVLTreeNode*root,int data){
+AVLTreeNode*findAVL(AVLTreeNode*root,LL data){
     if (root==nullptr || root->data==data)
         return root;
     if (data < root->data)
@@ -14,7 +14,7 @@ AVLTreeNode*findAVL(AVLTreeNode*root,int data){
     else
         return findAVL(root->right, data);
 }
-//LLï¼šå·¦å·¦å¯¹åº”çš„æƒ…å†µ(å·¦å•æ—‹è½¬),è¿”å›æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+//LL£º×ó×ó¶ÔÓ¦µÄÇé¿ö(×óµ¥Ğı×ª),·µ»ØĞı×ªºóµÄ¸ù½Úµã
 AVLTreeNode* leftLeftRotation(AVLTreeNode* k2){
     AVLTreeNode* k1= k2->left;
     k2->left = k1->right;
@@ -23,7 +23,7 @@ AVLTreeNode* leftLeftRotation(AVLTreeNode* k2){
     k1->height = max(getHeight(k1->left), k2->height) + 1;
     return k1;
 }
-//RRï¼šå³å³å¯¹åº”çš„æƒ…å†µ(å³å•æ—‹è½¬),è¿”å›æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+//RR£ºÓÒÓÒ¶ÔÓ¦µÄÇé¿ö(ÓÒµ¥Ğı×ª),·µ»ØĞı×ªºóµÄ¸ù½Úµã
 AVLTreeNode* rightRightRotation(AVLTreeNode* k1){
     AVLTreeNode* k2= k1->right;
     k1->right = k2->left;
@@ -32,32 +32,32 @@ AVLTreeNode* rightRightRotation(AVLTreeNode* k1){
     k2->height = max( getHeight(k2->right), k1->height) + 1;
     return k2;
 }
-//LRï¼šå·¦å³å¯¹åº”çš„æƒ…å†µ(å·¦åŒæ—‹è½¬),è¿”å›æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+//LR£º×óÓÒ¶ÔÓ¦µÄÇé¿ö(×óË«Ğı×ª),·µ»ØĞı×ªºóµÄ¸ù½Úµã
 AVLTreeNode* leftRightRotation(AVLTreeNode* k3){
     k3->left = rightRightRotation(k3->left);
     return leftLeftRotation(k3);
 }
-//RLï¼šå³å·¦å¯¹åº”çš„æƒ…å†µ(å³åŒæ—‹è½¬),è¿”å›æ—‹è½¬åçš„æ ¹èŠ‚ç‚¹
+//RL£ºÓÒ×ó¶ÔÓ¦µÄÇé¿ö(ÓÒË«Ğı×ª),·µ»ØĞı×ªºóµÄ¸ù½Úµã
 AVLTreeNode* rightLeftRotation(AVLTreeNode* k1){
     k1->right = leftLeftRotation(k1->right);
     return rightRightRotation(k1);
 }
-//å°†ç»“ç‚¹æ’å…¥åˆ°AVLæ ‘ä¸­ï¼Œå¹¶è¿”å›æ ¹èŠ‚ç‚¹
-AVLTreeNode* insertNode(AVLTreeNode* &root, int data){
+//½«½áµã²åÈëµ½AVLÊ÷ÖĞ£¬²¢·µ»Ø¸ù½Úµã
+AVLTreeNode* insertNode(AVLTreeNode* &root, LL data){
     if (root == nullptr)
         root = new AVLTreeNode(data);
     else if (data < root->data){
         root->left = insertNode(root->left, data);
-        // æ’å…¥èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
+        // ²åÈë½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
         if (getHeight(root->left) - getHeight(root->right) == 2){
             if (data < root->left->data)
                 root = leftLeftRotation(root);
             else
                 root = leftRightRotation(root);
         }
-    }else if (data > root->data){ // åº”è¯¥å°†dataæ’å…¥åˆ°"rootçš„å³å­æ ‘"çš„æƒ…å†µ
+    }else if (data > root->data){ // Ó¦¸Ã½«data²åÈëµ½"rootµÄÓÒ×ÓÊ÷"µÄÇé¿ö
         root->right = insertNode(root->right, data);
-        // æ’å…¥èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
+        // ²åÈë½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
         if (getHeight(root->right) - getHeight(root->left) == 2){
             if (data > root->right->data)
                 root = rightRightRotation(root);
@@ -65,11 +65,11 @@ AVLTreeNode* insertNode(AVLTreeNode* &root, int data){
                 root = rightLeftRotation(root);
         }
     }else
-        cout << "æ·»åŠ å¤±è´¥ï¼šä¸å…è®¸æ·»åŠ ç›¸åŒçš„èŠ‚ç‚¹ï¼" << endl;
+        cout << "Ìí¼ÓÊ§°Ü£º²»ÔÊĞíÌí¼ÓÏàÍ¬µÄ½Úµã£¡" << endl;
     root->height = max( getHeight(root->left), getHeight(root->right)) + 1;
     return root;
 }
-//æŸ¥æ‰¾æœ€å¤§ç»“ç‚¹ï¼šè¿”å›rootä¸ºæ ¹ç»“ç‚¹çš„AVLæ ‘çš„æœ€å¤§ç»“ç‚¹ã€‚
+//²éÕÒ×î´ó½áµã£º·µ»ØrootÎª¸ù½áµãµÄAVLÊ÷µÄ×î´ó½áµã¡£
 AVLTreeNode* maximum(AVLTreeNode* root){
     if (root==nullptr)
         return nullptr;
@@ -77,7 +77,7 @@ AVLTreeNode* maximum(AVLTreeNode* root){
         root = root->right;
     return root;
 }
-//æŸ¥æ‰¾æœ€å°ç»“ç‚¹ï¼šè¿”å›treeä¸ºæ ¹ç»“ç‚¹çš„AVLæ ‘çš„æœ€å°ç»“ç‚¹ã€‚
+//²éÕÒ×îĞ¡½áµã£º·µ»ØtreeÎª¸ù½áµãµÄAVLÊ÷µÄ×îĞ¡½áµã¡£
 AVLTreeNode* minimum(AVLTreeNode* root){
     if (root == nullptr)
         return nullptr;
@@ -85,14 +85,14 @@ AVLTreeNode* minimum(AVLTreeNode* root){
         root = root->left;
     return root;
 }
-//åˆ é™¤ç»“ç‚¹(z)ï¼Œè¿”å›æ ¹èŠ‚ç‚¹
+//É¾³ı½áµã(z)£¬·µ»Ø¸ù½Úµã
 AVLTreeNode* remove(AVLTreeNode* &root, AVLTreeNode* z){
-    // æ ¹ä¸ºç©ºæˆ–è€…æ²¡æœ‰è¦åˆ é™¤çš„èŠ‚ç‚¹ï¼Œç›´æ¥è¿”å›nullptrã€‚
+    // ¸ùÎª¿Õ»òÕßÃ»ÓĞÒªÉ¾³ıµÄ½Úµã£¬Ö±½Ó·µ»Ønullptr¡£
     if (root==nullptr || z==nullptr)
         return nullptr;
-    if (z->data < root->data){// å¾…åˆ é™¤çš„èŠ‚ç‚¹åœ¨"rootçš„å·¦å­æ ‘"ä¸­
+    if (z->data < root->data){// ´ıÉ¾³ıµÄ½ÚµãÔÚ"rootµÄ×ó×ÓÊ÷"ÖĞ
         root->left = remove(root->left, z);
-        // åˆ é™¤èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
+        // É¾³ı½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
         if (getHeight(root->right) - getHeight(root->left) == 2){
             AVLTreeNode *r =  root->right;
             if (getHeight(r->left) > getHeight(r->right))
@@ -100,9 +100,9 @@ AVLTreeNode* remove(AVLTreeNode* &root, AVLTreeNode* z){
             else
                 root = rightRightRotation(root);
         }
-    }else if (z->data > root->data){// å¾…åˆ é™¤çš„èŠ‚ç‚¹åœ¨"rootçš„å³å­æ ‘"ä¸­
+    }else if (z->data > root->data){// ´ıÉ¾³ıµÄ½ÚµãÔÚ"rootµÄÓÒ×ÓÊ÷"ÖĞ
         root->right = remove(root->right, z);
-        // åˆ é™¤èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
+        // É¾³ı½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
         if (getHeight(root->left) - getHeight(root->right) == 2){
             AVLTreeNode *l =  root->left;
             if (getHeight(l->right) > getHeight(l->right))
@@ -110,25 +110,25 @@ AVLTreeNode* remove(AVLTreeNode* &root, AVLTreeNode* z){
             else
                 root = leftLeftRotation(root);
         }
-    }else{    // rootæ˜¯å¯¹åº”è¦åˆ é™¤çš„èŠ‚ç‚¹ã€‚
+    }else{    // rootÊÇ¶ÔÓ¦ÒªÉ¾³ıµÄ½Úµã¡£
         if ((root->left!=nullptr) && (root->right!=nullptr)){
             if (getHeight(root->left) > getHeight(root->right)){
-                // å¦‚æœrootçš„å·¦å­æ ‘æ¯”å³å­æ ‘é«˜ï¼›
-                // åˆ™(01)æ‰¾å‡ºrootçš„å·¦å­æ ‘ä¸­çš„æœ€å¤§èŠ‚ç‚¹
-                //   (02)å°†è¯¥æœ€å¤§èŠ‚ç‚¹çš„å€¼èµ‹å€¼ç»™rootã€‚
-                //   (03)åˆ é™¤è¯¥æœ€å¤§èŠ‚ç‚¹ã€‚
-                // è¿™ç±»ä¼¼äºç”¨"rootçš„å·¦å­æ ‘ä¸­æœ€å¤§èŠ‚ç‚¹"åš"root"çš„æ›¿èº«ï¼›
-                // é‡‡ç”¨è¿™ç§æ–¹å¼çš„å¥½å¤„æ˜¯ï¼šåˆ é™¤"rootçš„å·¦å­æ ‘ä¸­æœ€å¤§èŠ‚ç‚¹"ä¹‹åï¼ŒAVLæ ‘ä»ç„¶æ˜¯å¹³è¡¡çš„ã€‚
+                // Èç¹ûrootµÄ×ó×ÓÊ÷±ÈÓÒ×ÓÊ÷¸ß£»
+                // Ôò(01)ÕÒ³örootµÄ×ó×ÓÊ÷ÖĞµÄ×î´ó½Úµã
+                //   (02)½«¸Ã×î´ó½ÚµãµÄÖµ¸³Öµ¸øroot¡£
+                //   (03)É¾³ı¸Ã×î´ó½Úµã¡£
+                // ÕâÀàËÆÓÚÓÃ"rootµÄ×ó×ÓÊ÷ÖĞ×î´ó½Úµã"×ö"root"µÄÌæÉí£»
+                // ²ÉÓÃÕâÖÖ·½Ê½µÄºÃ´¦ÊÇ£ºÉ¾³ı"rootµÄ×ó×ÓÊ÷ÖĞ×î´ó½Úµã"Ö®ºó£¬AVLÊ÷ÈÔÈ»ÊÇÆ½ºâµÄ¡£
                 AVLTreeNode* Max = maximum(root->left);
                 root->data = Max->data;
                 root->left = remove(root->left, Max);
             }else{
-                // å¦‚æœrootçš„å·¦å­æ ‘ä¸æ¯”å³å­æ ‘é«˜(å³å®ƒä»¬ç›¸ç­‰ï¼Œæˆ–å³å­æ ‘æ¯”å·¦å­æ ‘é«˜1)
-                // åˆ™(01)æ‰¾å‡ºrootçš„å³å­æ ‘ä¸­çš„æœ€å°èŠ‚ç‚¹
-                //   (02)å°†è¯¥æœ€å°èŠ‚ç‚¹çš„å€¼èµ‹å€¼ç»™rootã€‚
-                //   (03)åˆ é™¤è¯¥æœ€å°èŠ‚ç‚¹ã€‚
-                // è¿™ç±»ä¼¼äºç”¨"rootçš„å³å­æ ‘ä¸­æœ€å°èŠ‚ç‚¹"åš"root"çš„æ›¿èº«ï¼›
-                // é‡‡ç”¨è¿™ç§æ–¹å¼çš„å¥½å¤„æ˜¯ï¼šåˆ é™¤"rootçš„å³å­æ ‘ä¸­æœ€å°èŠ‚ç‚¹"ä¹‹åï¼ŒAVLæ ‘ä»ç„¶æ˜¯å¹³è¡¡çš„ã€‚
+                // Èç¹ûrootµÄ×ó×ÓÊ÷²»±ÈÓÒ×ÓÊ÷¸ß(¼´ËüÃÇÏàµÈ£¬»òÓÒ×ÓÊ÷±È×ó×ÓÊ÷¸ß1)
+                // Ôò(01)ÕÒ³örootµÄÓÒ×ÓÊ÷ÖĞµÄ×îĞ¡½Úµã
+                //   (02)½«¸Ã×îĞ¡½ÚµãµÄÖµ¸³Öµ¸øroot¡£
+                //   (03)É¾³ı¸Ã×îĞ¡½Úµã¡£
+                // ÕâÀàËÆÓÚÓÃ"rootµÄÓÒ×ÓÊ÷ÖĞ×îĞ¡½Úµã"×ö"root"µÄÌæÉí£»
+                // ²ÉÓÃÕâÖÖ·½Ê½µÄºÃ´¦ÊÇ£ºÉ¾³ı"rootµÄÓÒ×ÓÊ÷ÖĞ×îĞ¡½Úµã"Ö®ºó£¬AVLÊ÷ÈÔÈ»ÊÇÆ½ºâµÄ¡£
                 AVLTreeNode* Min = minimum(root->right);
                 root->data = Min->data;
                 root->right = remove(root->right, Min);
@@ -141,7 +141,7 @@ AVLTreeNode* remove(AVLTreeNode* &root, AVLTreeNode* z){
     }
     return root;
 }
-void remove(AVLTreeNode* &root,int data){
+void remove(AVLTreeNode* &root,LL data){
     AVLTreeNode* z;
     if ((z = findAVL(root, data)) != nullptr)
         root = remove(root, z);

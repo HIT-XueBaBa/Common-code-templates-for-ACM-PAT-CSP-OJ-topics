@@ -1,16 +1,16 @@
-//拓扑排序除首尾结点外，边不包含其他信息，不需要使用上面的存储结构，graph[i]中存储的直接是i号结点能到达的结点编号
-bool topSort(vector<int>&top){//degree存储各节点的入度
-    queue<int>q;//储存入度为零的结点
-    for(int i=0;i<=MAX;++i)//将入度为零的结点放入队列中
+//�����������β����⣬�߲�����������Ϣ������Ҫʹ������Ĵ洢�ṹ��graph[i]�д洢��ֱ����i�Ž���ܵ���Ľ����
+bool topSort(vector<LL>&top){//degree�洢���ڵ�����
+    queue<LL>q;//�������Ϊ��Ľ��
+    for(LL i=0;i<=MAX;++i)//�����Ϊ��Ľ����������
         if(degree[i]==0)
             q.push(i);
-    while(!q.empty()){//队列不空
-        int p=q.front();//弹出队首结点
+    while(!q.empty()){//���в���
+        LL p=q.front();//�������׽��
         q.pop();
         top.push_back(p);
-        for(int i:graph[p])//遍历该结点能到达的结点
-            if(--degree[i]==0)//减少能到达结点的入度，如果入度为零
-                q.push(i);//压入队列
+        for(LL i:graph[p])//�����ý���ܵ���Ľ��
+            if(--degree[i]==0)//�����ܵ��������ȣ�������Ϊ��
+                q.push(i);//ѹ�����
     }
     return top.size()==MAX;
 }

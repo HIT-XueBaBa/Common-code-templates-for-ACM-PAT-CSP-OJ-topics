@@ -1,22 +1,22 @@
-int father[MAX];
-void init(int n){//åˆå§‹åŒ–å¹¶æŸ¥é›†
+LL father[MAX];
+void init(LL n){//³õÊ¼»¯²¢²é¼¯
     iota(father,father+n,0);
 }
-int findFather(int x){//å¯»æ‰¾æ ¹ç»“ç‚¹å¹¶è¿›è¡Œè·¯å¾„å‹ç¼©
+LL findFather(LL x){//Ñ°ÕÒ¸ù½áµã²¢½øĞĞÂ·¾¶Ñ¹Ëõ
     if(x==father[x])
         return x;
-    int temp=findFather(father[x]);
+    LL temp=findFather(father[x]);
     father[x]=temp;
     return temp;
 }
-void unionSet(int a,int b){//åˆå¹¶ä¸¤ä¸ªé›†åˆ
-    int ua=findFather(a),ub=findFather(b);
+void unionSet(LL a,LL b){//ºÏ²¢Á½¸ö¼¯ºÏ
+    LL ua=findFather(a),ub=findFather(b);
     if(ua!=ub)
         father[ua]=ub;
 }
-int countRoot(int n){//æ±‚å‡ºå¹¶æŸ¥é›†ä¸­æœ‰å‡ ä¸ªé›†åˆ
-    int num=0;
-    for(int i=0;i<n;++i)
+LL countRoot(LL n){//Çó³ö²¢²é¼¯ÖĞÓĞ¼¸¸ö¼¯ºÏ
+    LL num=0;
+    for(LL i=0;i<n;++i)
         if(father[i]==i)
             ++num;
     return num;

@@ -1,6 +1,6 @@
-//ansä¸­å­˜å‚¨ä¸­æ ¹éå†åºåˆ—
-vector<int> ans;
-vector<int> inorderTraversal(TreeNode* root) {
+//ansÖĞ´æ´¢ÖĞ¸ù±éÀúĞòÁĞ
+vector<LL> ans;
+vector<LL> inorderTraversal(TreeNode* root) {
     stack<TreeNode*> st;
     while (!st.empty() || root != nullptr) {
         for (; root != nullptr; root = root->left)

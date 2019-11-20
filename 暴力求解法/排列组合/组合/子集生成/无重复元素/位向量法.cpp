@@ -1,10 +1,10 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-//bitsetçš„é•¿åº¦éœ€è¦æ¯”numsçš„æœ€å¤§é•¿åº¦å¤§ï¼Œè¿™é‡Œçš„100è¦æŒ‰é¢˜ç›®è¦æ±‚å˜åŒ–
-vector<vector<int>> ans;
-void f(vector<int>& nums, bitset<100>& bits, int i) {
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+//bitsetµÄ³¤¶ÈĞèÒª±ÈnumsµÄ×î´ó³¤¶È´ó£¬ÕâÀïµÄ100Òª°´ÌâÄ¿ÒªÇó±ä»¯
+vector<vector<LL>> ans;
+void f(vector<LL>& nums, bitset<100>& bits, LL i) {
     if (i == nums.size()) {
         ans.push_back({});
-        for (int i = 0; i < nums.size(); ++i)
+        for (LL i = 0; i < nums.size(); ++i)
             if (bits[i]) {
                 ans.back().push_back(nums[i]);
             }
@@ -15,7 +15,7 @@ void f(vector<int>& nums, bitset<100>& bits, int i) {
     bits[i] = false;
     f(nums, bits, i + 1);
 }
-void subsets(vector<int>& nums) {
+void subsets(vector<LL>& nums) {
     bitset<100> bits;
     f(nums, bits, 0);
 }

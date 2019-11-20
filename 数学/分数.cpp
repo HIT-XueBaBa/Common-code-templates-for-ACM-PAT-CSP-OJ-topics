@@ -1,30 +1,30 @@
-//å‚¨å­˜åˆ†æ•°çš„ç»“æ„ä½“å®šä¹‰
+//´¢´æ·ÖÊıµÄ½á¹¹Ìå¶¨Òå
 struct F{
-    int son,mother;//åˆ†å­,åˆ†æ¯
-    F(int s,int m):son(s),mother(m) {}
+    LL son,mother;//·Ö×Ó,·ÖÄ¸
+    F(LL s,LL m):son(s),mother(m) {}
 };
-//å°†åˆ†æ•°åŒ–ç®€ä¸ºæœ€ç®€åˆ†æ•°
+//½«·ÖÊı»¯¼òÎª×î¼ò·ÖÊı
 void simplify(F&f){
-    if(f.son==0){//åˆ†å­ä¸º0ï¼Œåˆ†æ¯å‡å˜ä¸º1
+    if(f.son==0){//·Ö×ÓÎª0£¬·ÖÄ¸¾ù±äÎª1
         f.mother=1;
         return;
     }
-    if(f.mother<0){//æŠŠåˆ†æ¯ä¸Šçš„è´Ÿå·ç§»åˆ°åˆ†å­ä¸Š
+    if(f.mother<0){//°Ñ·ÖÄ¸ÉÏµÄ¸ººÅÒÆµ½·Ö×ÓÉÏ
         f.son=-f.son;
         f.mother=-f.mother;
     }
-    int d=gcd(abs(f.son),f.mother);//æ±‚åˆ†å­åˆ†æ¯æœ€å¤§å…¬çº¦æ•°
+    LL d=gcd(abs(f.son),f.mother);//Çó·Ö×Ó·ÖÄ¸×î´ó¹«Ô¼Êı
     f.son/=d;
     f.mother/=d;
 }
-//åˆ†æ•°è¾“å‡º
+//·ÖÊıÊä³ö
 void output(Fraction&f){
     if(f.mother==1)
-        printf("%d",f.son);
+        prLLf("%d",f.son);
     else{
         if(abs(f.son)<f.mother)
-            printf("%d/%d",f.son,f.mother);
+            prLLf("%d/%d",f.son,f.mother);
         else
-            printf("%d %d/%d",f.son/f.mother,abs(f.son)%f.mother,f.mother);
+            prLLf("%d %d/%d",f.son/f.mother,abs(f.son)%f.mother,f.mother);
     }
 }

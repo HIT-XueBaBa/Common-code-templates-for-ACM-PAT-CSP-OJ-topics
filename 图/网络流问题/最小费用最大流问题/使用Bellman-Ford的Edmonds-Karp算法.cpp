@@ -1,31 +1,31 @@
-void insertEdge(int from,int to,int cap,int cost){//æ’å…¥è¾¹
+void insertEdge(LL from,LL to,LL cap,LL cost){//²åÈë±ß
     graph[from].push_back(edges.size());
     edges.push_back(Edge(from,to,cap,0,cost));
     graph[to].push_back(edges.size());
     edges.push_back(Edge(to,from,0,0,-cost));
 }
-bool BellmanFord(int s,int t,int&flow,long long&cost){//æœ€å¤§æµç®—æ³•,sä¸ºæºç‚¹,tä¸ºæ±‡ç‚¹
-    int a[MAXV]={0},p[MAXV]={0},dis[MAXV]={0};//aæ•°ç»„è¡¨ç¤ºæºç‚¹åˆ°ç»“ç‚¹a[i]çš„æ®‹é‡,pæ•°ç»„è¡¨ç¤ºæœ€çŸ­è·¯æ ‘ä¸Šåˆ°è¾¾ç»“ç‚¹p[i]çš„è¾¹åœ¨edgesæ•°ç»„ä¸­çš„åºå·
+bool BellmanFord(LL s,LL t,LL&flow,long long&cost){//×î´óÁ÷Ëã·¨,sÎªÔ´µã,tÎª»ãµã
+    LL a[MAXV]={0},p[MAXV]={0},dis[MAXV]={0};//aÊı×é±íÊ¾Ô´µãµ½½áµãa[i]µÄ²ĞÁ¿,pÊı×é±íÊ¾×î¶ÌÂ·Ê÷ÉÏµ½´ï½áµãp[i]µÄ±ßÔÚedgesÊı×éÖĞµÄĞòºÅ
     fill(dis,dis+MAXV,INF);
     bool inQueue[MAXV]={false};
     dis[s]=0;
     inQueue[s]=true;
-    a[s]=INF;//èµ·ç‚¹çš„æ®‹é‡ç½®ä¸ºæ— ç©·å¤§
-    queue<int>q;
+    a[s]=INF;//ÆğµãµÄ²ĞÁ¿ÖÃÎªÎŞÇî´ó
+    queue<LL>q;
     q.push(s);
-    while(!q.empty()){//å¹¿åº¦ä¼˜å…ˆéå†æŸ¥æ‰¾ä»æºç‚¹åˆ°è¾¾æ±‡ç‚¹çš„å¢å¹¿è·¯
-        int u=q.front();
+    while(!q.empty()){//¹ã¶ÈÓÅÏÈ±éÀú²éÕÒ´ÓÔ´µãµ½´ï»ãµãµÄÔö¹ãÂ·
+        LL u=q.front();
         q.pop();
         inQueue[u]=false;
-        for(int i:graph[u]){//éå†ä»¥xä¸ºèµ·ç‚¹çš„è¾¹
+        for(LL i:graph[u]){//±éÀúÒÔxÎªÆğµãµÄ±ß
             Edge&e=edges[i];
-            if(e.cap>e.flow&&dis[e.to]>dis[u]+e.cost){//å½“å‰è¾¹çš„ç»ˆç‚¹çš„æ®‹é‡ä¸º0ä¸”å®¹é‡å¤§äºæµé‡
+            if(e.cap>e.flow&&dis[e.to]>dis[u]+e.cost){//µ±Ç°±ßµÄÖÕµãµÄ²ĞÁ¿Îª0ÇÒÈİÁ¿´óÓÚÁ÷Á¿
                 dis[e.to]=dis[u]+e.cost;
-                p[e.to]=i;//æ›´æ–°åˆ°è¾¾è¯¥ç»ˆç‚¹çš„è¾¹çš„ç¼–å·
-                a[e.to]=min(a[u],e.cap-e.flow);//æ›´æ–°æºç‚¹åˆ°è¯¥ç»ˆç‚¹çš„æ®‹é‡
+                p[e.to]=i;//¸üĞÂµ½´ï¸ÃÖÕµãµÄ±ßµÄ±àºÅ
+                a[e.to]=min(a[u],e.cap-e.flow);//¸üĞÂÔ´µãµ½¸ÃÖÕµãµÄ²ĞÁ¿
                 if(!inQueue[e.to]){
                     inQueue[e.to]=true;
-                    q.push(e.to);//å‹å…¥é˜Ÿåˆ—
+                    q.push(e.to);//Ñ¹Èë¶ÓÁĞ
                 }
             }
         }
@@ -34,15 +34,15 @@ bool BellmanFord(int s,int t,int&flow,long long&cost){//æœ€å¤§æµç®—æ³•,sä¸ºæºç
         return false;
     flow+=a[t];
     cost+=dis[t]*1ll*a[t];
-    for(int u=t;u!=s;u=edges[p[u]].from){//ä»æ±‡ç‚¹å‘å‰éå†å¢å¹¿è·¯ç»ï¼Œæ›´æ–°æ¯æ¡å¢å¹¿è·¯çš„æµé‡
+    for(LL u=t;u!=s;u=edges[p[u]].from){//´Ó»ãµãÏòÇ°±éÀúÔö¹ãÂ·¾­£¬¸üĞÂÃ¿ÌõÔö¹ãÂ·µÄÁ÷Á¿
         edges[p[u]].flow+=a[t];
         edges[p[u]^1].flow-=a[t];
     }
     return true;
 }
-//éœ€è¦ä¿è¯åˆå§‹ç½‘ç»œä¸­æ²¡æœ‰è´Ÿæƒç¯
-pair<int,long long> MinCostMaxFlow(int s,int t){
-    int flow=0;
+//ĞèÒª±£Ö¤³õÊ¼ÍøÂçÖĞÃ»ÓĞ¸ºÈ¨»·
+pair<LL,long long> MinCostMaxFlow(LL s,LL t){
+    LL flow=0;
     long long cost=0;
     while(BellmanFord(s,t,flow,cost));
     return {flow,cost};

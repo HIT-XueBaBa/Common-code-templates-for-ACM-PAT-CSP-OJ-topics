@@ -1,7 +1,7 @@
-//è°ƒç”¨drive(A),å¦‚æœè¦æ±‚å­—å…¸åºè¾“å‡ºå…¨æ’åˆ—ï¼Œè¯·ä½¿ç”¨mapä»£æ›¿ unordered_map
-void permute(vector<int> &v, int index, unordered_map<int, int> &um) {
+//µ÷ÓÃdrive(A),Èç¹ûÒªÇó×ÖµäĞòÊä³öÈ«ÅÅÁĞ£¬ÇëÊ¹ÓÃmap´úÌæ unordered_map
+void permute(vector<LL> &v, LL index, unordered_map<LL, LL> &um) {
     if (index <= 0) {
-        //å¤„ç†å½“å‰çš„æ’åˆ—
+        //´¦Àíµ±Ç°µÄÅÅÁĞ
         return;
     }
     for (auto &i : um) {
@@ -14,10 +14,10 @@ void permute(vector<int> &v, int index, unordered_map<int, int> &um) {
         ++i.second;
     }
 }
-void drive(vector<int> &A) {
-    unordered_map<int, int> um;
-    for (int i : A)
+void drive(vector<LL> &A) {
+    unordered_map<LL, LL> um;
+    for (LL i : A)
         ++um[i];
-    vector<int> v;
+    vector<LL> v;
     permute(v, A.size(), um);
 }

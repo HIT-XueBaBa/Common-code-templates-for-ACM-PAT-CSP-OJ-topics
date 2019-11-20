@@ -1,7 +1,7 @@
-void getNext(string pattern,int*next){
-    int j=-1;
+void getNext(string pattern,LL*next){
+    LL j=-1;
     next[0]=-1;
-    for(int i=1;i<pattern.size();++i){
+    for(LL i=1;i<pattern.size();++i){
         while(j!=-1&&pattern[i]!=pattern[j+1])
             j=next[j];
         if(pattern[i]==pattern[j+1])
@@ -10,12 +10,12 @@ void getNext(string pattern,int*next){
     }
 }
 bool KMP(string text,string pattern){
-    int next[pattern.size()];
+    LL next[pattern.size()];
     getNextval(pattern,next);
-    for(int i:next)
-        printf("%d ",i);
-    int j=-1;
-    for(int i=0;i<text.size();++i){
+    for(LL i:next)
+        prLLf("%d ",i);
+    LL j=-1;
+    for(LL i=0;i<text.size();++i){
         while(j!=-1&&text[i]!=pattern[j+1])
             j=next[j];
         if(text[i]==pattern[j+1])
@@ -25,10 +25,10 @@ bool KMP(string text,string pattern){
     }
     return false;
 }
-void getNextval(string pattern,int*next){
-    int j=-1;
+void getNextval(string pattern,LL*next){
+    LL j=-1;
     next[0]=-1;
-    for(int i=1;i<pattern.size();++i){
+    for(LL i=1;i<pattern.size();++i){
         if(j!=-1&&pattern[i]!=pattern[j+1])
             j=next[j];
         if(pattern[i]==pattern[j+1])
@@ -39,13 +39,13 @@ void getNextval(string pattern,int*next){
             next[i]=next[j];
     }
 }
-int KMPcount(string text,string pattern){
-    int next[pattern.size()];
+LL KMPcount(string text,string pattern){
+    LL next[pattern.size()];
     getNextval(pattern,next);
-    for(int i:next)
-        printf("%d ",i);
-    int j=-1,result=0;
-    for(int i=0;i<text.size();++i){
+    for(LL i:next)
+        prLLf("%d ",i);
+    LL j=-1,result=0;
+    for(LL i=0;i<text.size();++i){
         while(j!=-1&&text[i]!=pattern[j+1])
             j=next[j];
         if(text[i]==pattern[j+1])

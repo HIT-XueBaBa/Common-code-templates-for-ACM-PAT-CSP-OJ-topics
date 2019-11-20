@@ -1,14 +1,14 @@
-void f(vector<int>& A, int n) {
-    if (A.size() == n) {  //é€’å½’è¾¹ç•Œ
-        for (int i = 0; i < A.size(); i++) printf("%d ", A[i]);
-        printf("\n");
+void f(vector<LL>& A, LL n) {
+    if (A.size() == n) {  //µÝ¹é±ß½ç
+        for (LL i = 0; i < A.size(); i++) prLLf("%d ", A[i]);
+        prLLf("\n");
         return;
     }
-    for (int i = 1; i <= n; i++) {  //å°è¯•åœ¨Aæœ«å°¾å¡«å„ç§æ•´æ•°i
+    for (LL i = 1; i <= n; i++) {  //³¢ÊÔÔÚAÄ©Î²Ìî¸÷ÖÖÕûÊýi
         if (find(A.begin(), A.end(), i) != A.end())
             continue;
         A.push_back(i);
-        f(A, n);  //é€’å½’è°ƒç”¨
+        f(A, n);  //µÝ¹éµ÷ÓÃ
         A.pop_back();
     }
 }

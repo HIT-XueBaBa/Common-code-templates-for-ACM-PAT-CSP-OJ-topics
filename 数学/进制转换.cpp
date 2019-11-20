@@ -1,13 +1,13 @@
-//æŠŠRè¿›åˆ¶å­—ç¬¦ä¸²sè½¬æ¢æˆåè¿›åˆ¶æ•°
-int strToDemical(const string&s,int R=10){
-    int n=0;
+//°ÑR½øÖÆ×Ö·û´®s×ª»»³ÉÊ®½øÖÆÊı
+LL strToDemical(const string&s,LL R=10){
+    LL n=0;
     for(char c:s)
         n=n*R+(c-'0');
     return n;
 }
-//æŠŠåè¿›åˆ¶æ•°mè½¬æ¢æˆRè¿›åˆ¶æ•°ç»„z
-int demicalToR(int m,int z[],int R=10){
-    int num=0;
+//°ÑÊ®½øÖÆÊım×ª»»³ÉR½øÖÆÊı×éz
+LL demicalToR(LL m,LL z[],LL R=10){
+    LL num=0;
     do{
         z[num++]=m%R;
         m/=R;

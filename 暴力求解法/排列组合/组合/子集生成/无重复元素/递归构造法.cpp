@@ -1,14 +1,14 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-vector<vector<int>> ans;
-void f(vector<int>& nums, vector<int>& temp, int i) {
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+vector<vector<LL>> ans;
+void f(vector<LL>& nums, vector<LL>& temp, LL i) {
     ans.push_back(temp);
-    for (int j = i; j < nums.size(); ++j) {
+    for (LL j = i; j < nums.size(); ++j) {
         temp.push_back(nums[j]);
         f(nums, temp, j + 1);
         temp.pop_back();
     }
 }
-void subsets(vector<int>& nums) {
-    vector<int> temp;
+void subsets(vector<LL>& nums) {
+    vector<LL> temp;
     f(nums, temp, 0);
 }

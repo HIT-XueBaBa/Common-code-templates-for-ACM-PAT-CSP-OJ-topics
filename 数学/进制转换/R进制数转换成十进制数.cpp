@@ -1,6 +1,6 @@
-int transRto10(const vector<int>& r, int R) {
-    int d = 0;
-    for (int i : r)
+LL transRto10(const vector<LL>& r, LL R) {
+    LL d = 0;
+    for (LL i : r)
         d = d * R + i;
     return d;
 }

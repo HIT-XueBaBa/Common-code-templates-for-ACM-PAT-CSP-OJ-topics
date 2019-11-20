@@ -1,7 +1,7 @@
-//鍦ㄦ湁搴忓簭鍒椾腑鏌ユ壘鏌愭暟value鐨勪綅缃紝浜屽垎鍖洪棿涓哄乏闂彸闂殑鍖洪棿[left,right]
-int binarySearch(vector<int>& v, int left, int right, int value) {
+//在有序序列中查找某数value的位置，二分区间为左闭右闭的区间[left,right]
+LL binarySearch(vector<LL>& v, LL left, LL right, LL value) {
     while (left <= right) {
-        int mid = left + (right - left) / 2;
+        LL mid = left + (right - left) / 2;
         if (v[mid] == value)
             return mid;
         else if (v[mid] < value)

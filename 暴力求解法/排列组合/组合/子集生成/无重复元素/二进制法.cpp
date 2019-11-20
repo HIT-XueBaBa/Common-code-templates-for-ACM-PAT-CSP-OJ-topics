@@ -1,10 +1,10 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-vector<vector<int>> ans;
-void subsets(vector<int>& nums) {
-    int n = nums.size();
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+vector<vector<LL>> ans;
+void subsets(vector<LL>& nums) {
+    LL n = nums.size();
     ans.resize(1 << n);
-    for (int i = 0; i < (1 << n); ++i)
-        for (int j = 0; j < n; ++j)
+    for (LL i = 0; i < (1 << n); ++i)
+        for (LL j = 0; j < n; ++j)
             if ((i >> j) & 1) {
                 ans[i].push_back(nums[j]);
             }

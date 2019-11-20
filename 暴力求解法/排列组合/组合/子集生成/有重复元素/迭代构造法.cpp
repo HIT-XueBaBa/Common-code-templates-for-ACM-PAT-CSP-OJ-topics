@@ -1,11 +1,11 @@
-//è°ƒç”¨subsetså‡½æ•°ç”Ÿæˆæ‰€æœ‰å­é›†,å­é›†å­˜å‚¨åœ¨ansä¸­
-vector<vector<int>> ans;
-void subsets(vector<int>& nums) {
+//µ÷ÓÃsubsetsº¯ÊıÉú³ÉËùÓĞ×Ó¼¯,×Ó¼¯´æ´¢ÔÚansÖĞ
+vector<vector<LL>> ans;
+void subsets(vector<LL>& nums) {
     sort(nums.begin(), nums.end());
     ans.push_back({});
-    int s = 0;
-    for (int i = 0; i < nums.size(); ++i) {
-        int j = (i > 0 && nums[i] == nums[i - 1]) ? s : 0;
+    LL s = 0;
+    for (LL i = 0; i < nums.size(); ++i) {
+        LL j = (i > 0 && nums[i] == nums[i - 1]) ? s : 0;
         s = ans.size();
         for (; j < s; ++j) {
             ans.push_back(ans[j]);
