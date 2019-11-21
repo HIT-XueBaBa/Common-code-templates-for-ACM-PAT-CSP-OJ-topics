@@ -1,3 +1,4 @@
+//以下代码用暴力方法判断n是否为素数
 bool isPrime(LL n) {
     if (n < 2)  //n小于2，一定不是素数
         return false;

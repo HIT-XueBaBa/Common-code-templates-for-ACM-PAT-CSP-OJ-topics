@@ -1,4 +1,4 @@
-//以下代码求解[2,n]以内的素数表
+//以下代码用埃氏筛法求解[2,n]以内的素数表
 vector<LL> prime;  //素数表存储在prime中，prime是全局变量
 void Eratosthenes(LL n) {
     //f[i]为true，表示数字i被筛去了；如果f[i]为false，表示数字i没有被筛去
