@@ -1,4 +1,4 @@
-vector<string> split(const string& s, char c = ' ') {
+vector<string> split(const string& s, string c = " ") {
     vector<string> ans;
     for (int i = 0, j = 0; i < s.size(); i = j + 1) {
         j = s.find(c, i);
